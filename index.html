@@ -3,75 +3,351 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kiwi AI - Private Family AI Assistant</title>
+    <title>Kiwi AI - Your Family's Private AI Assistant</title>
+    <meta name="description" content="Kiwi AI - A flightless AI that stays at home. Your family's private AI assistant that runs entirely on your Mac. No cloud, complete privacy.">
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            background: #F5E6D3;
-            color: #3E342F;
+        * {
             margin: 0;
-            padding: 40px 20px;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: #2d3748;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            padding: 2rem 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .kiwi-logo {
+            width: 60px;
+            height: 60px;
+        }
+
+        .brand-name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #047857;
+            letter-spacing: -0.5px;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            padding: 4rem 0;
+        }
+
+        .hero {
             text-align: center;
         }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        h1 {
-            font-size: 3em;
-            margin: 0.5em 0;
-        }
+
         .tagline {
-            font-size: 1.5em;
+            font-size: 1.8rem;
             color: #8B6B47;
-            margin: 1em 0;
-        }
-        .subtitle {
-            font-size: 1.2em;
-            color: #4A5D3A;
-            margin: 2em 0;
-        }
-        .cta {
+            margin: 2rem 0;
+            font-weight: 500;
+            letter-spacing: 1px;
+            position: relative;
             display: inline-block;
-            background: #E67E22;
-            color: white;
-            padding: 15px 30px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-size: 1.1em;
-            margin-top: 2em;
         }
-        .cta:hover {
-            background: #d35400;
+
+        .tagline::before,
+        .tagline::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #8B6B47);
         }
+
+        .tagline::before {
+            right: 105%;
+        }
+
+        .tagline::after {
+            left: 105%;
+            background: linear-gradient(90deg, #8B6B47, transparent);
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #4a5568;
+            margin: 2rem auto 3rem;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
         .features {
-            margin: 3em 0;
-            text-align: left;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
         }
+
         .feature {
-            margin: 1em 0;
-            padding-left: 30px;
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 12px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature h3 {
+            color: #2d3748;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .feature p {
+            color: #718096;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .cta-container {
+            margin: 4rem 0;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: #047857;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(4, 120, 87, 0.2);
+        }
+
+        .cta-button:hover {
+            background: #065f46;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(4, 120, 87, 0.3);
+        }
+
+        .cta-button.secondary {
+            background: white;
+            color: #047857;
+            border: 2px solid #047857;
+            box-shadow: none;
+        }
+
+        .cta-button.secondary:hover {
+            background: #f0fdf4;
+        }
+
+        .github-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        .bird-fact {
+            background: #f0fdf4;
+            border-left: 4px solid #047857;
+            padding: 1.5rem;
+            margin: 3rem auto;
+            max-width: 600px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .bird-fact h4 {
+            color: #047857;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .bird-fact p {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            color: #718096;
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .footer-text {
+            font-size: 1.1rem;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .footer-links a {
+            color: #047857;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #065f46;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .brand-name {
+                font-size: 2rem;
+            }
+            
+            .tagline {
+                font-size: 1.5rem;
+            }
+            
+            .tagline::before,
+            .tagline::after {
+                display: none;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🥝 Kiwi AI</h1>
-        <p class="tagline">Flightless = No Cloud</p>
-        <p class="subtitle">Your family's private AI assistant that runs entirely at home</p>
-        
-        <div class="features">
-            <div class="feature">🏠 <strong>Runs on your Mac</strong> - No cloud servers, ever</div>
-            <div class="feature">🔒 <strong>Complete privacy</strong> - Your data never leaves home</div>
-            <div class="feature">👨‍👩‍👧‍👦 <strong>Family first</strong> - Designed for all generations</div>
-            <div class="feature">🥝 <strong>Small but mighty</strong> - Powerful AI, local control</div>
+    <header>
+        <div class="container">
+            <div class="logo-container">
+                <!-- Kiwi Bird SVG Logo -->
+                <svg class="kiwi-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+                    <g fill="#047857">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M39.165,12.777c-0.788,0.168-1.562-0.336-1.73-1.123c-0.167-0.787,0.335-1.561,1.123-1.729c0.787-0.167,1.562,0.335,1.73,1.123C40.456,11.834,39.952,12.609,39.165,12.777 M22.06,35.058c3.195-1.612,6.1-4.113,8.156-7.369c1.105-1.748,1.969-3.75,3.064-5.546c1.281-2.102,2.614-3.507,5.193-4.218c0.811-0.225,1.618-0.295,2.415-0.579l8.515,9.834c0.254,0.296,0.737-0.029,0.558-0.378l-6.054-11.803c0.978-1.5,1.248-3.377,0.801-5.105c-0.258-0.992-0.753-1.929-1.476-2.688c-1.563-1.64-4.124-2.465-7.561-1.309c-4.4,1.481-4.727,1.419-7.373,0.916c-4.885-0.924-9.379-1.465-14.331-0.351C7.488,7.919,2.073,12.133,0.469,18.761c-1.358,5.613,0.203,12.575,5.094,16.047c2.03,1.44,4.544,2.266,7.417,2.359l2.969,6.607c0.246,0.55,0.79,0.869,1.379,0.869h4.987c0.807,0,1.463-0.655,1.463-1.464c0-0.808-0.656-1.464-1.463-1.464h-4.092l-2.129-4.737C18.112,36.676,20.142,36.025,22.06,35.058z"/>
+                    </g>
+                </svg>
+                <h1 class="brand-name">Kiwi AI</h1>
+            </div>
         </div>
-        
-        <a href="https://github.com/Kiwi-Home/ai-family-hub" class="cta">Learn More on GitHub</a>
-        
-        <p style="margin-top: 3em; color: #8B6B47;">
-            <em>Coming soon - Join us in building the future of private family AI</em>
-        </p>
-    </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="hero">
+                <h2 class="tagline">Flightless = No Cloud</h2>
+                
+                <p class="subtitle">
+                    Like the kiwi bird that stays grounded, your family's AI assistant 
+                    never flies to the cloud. All your data stays safely at home.
+                </p>
+
+                <div class="bird-fact">
+                    <h4>🪶 Why a Kiwi?</h4>
+                    <p>
+                        The kiwi is a remarkable flightless bird native to New Zealand. 
+                        Small but mighty, fiercely protective of its territory, and perfectly 
+                        adapted to thrive without ever taking flight — just like your private AI.
+                    </p>
+                </div>
+
+                <div class="features">
+                    <div class="feature">
+                        <div class="feature-icon">🏠</div>
+                        <h3>Runs on Your Mac</h3>
+                        <p>Powered by Apple Silicon. No cloud servers, no subscriptions, no compromises.</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <div class="feature-icon">🔒</div>
+                        <h3>Complete Privacy</h3>
+                        <p>Your conversations, documents, and family data never leave your home network.</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <div class="feature-icon">👨‍👩‍👧‍👦</div>
+                        <h3>Family First</h3>
+                        <p>Designed for every generation, from kids to grandparents. Simple, safe, and secure.</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Small but Mighty</h3>
+                        <p>Powerful AI capabilities optimized for M-series chips. Fast, efficient, and always ready.</p>
+                    </div>
+                </div>
+
+                <div class="cta-container">
+                    <a href="https://github.com/Kiwi-Home/ai-family-hub" class="cta-button">
+                        <svg class="github-icon" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        Learn More on GitHub
+                    </a>
+                    <a href="https://github.com/Kiwi-Home/ai-family-hub/releases" class="cta-button secondary">
+                        Download Coming Soon
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p class="footer-text">
+                Join us in building the future of private family AI
+            </p>
+            <div class="footer-links">
+                <a href="https://github.com/Kiwi-Home/ai-family-hub">GitHub</a>
+                <a href="https://github.com/Kiwi-Home/ai-family-hub/blob/main/KIWI_CHARTER.md">Our Charter</a>
+                <a href="https://github.com/Kiwi-Home/ai-family-hub/issues">Contribute</a>
+            </div>
+            <p style="margin-top: 2rem; font-size: 0.9rem; color: #a0aec0;">
+                © 2025 Kiwi AI - A project by the Kiwi Home team
+            </p>
+        </div>
+    </footer>
 </body>
 </html>
